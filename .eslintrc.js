@@ -1,9 +1,5 @@
 module.exports = {
-  extends: [
-    'airbnb',
-    'plugin:flowtype/recommended',
-    'plugin:react/recommended'
-  ],
+  extends: ['airbnb', 'plugin:flowtype/recommended', 'plugin:react/recommended'],
   plugins: ['flowtype', 'react', 'react-native'],
   parserOptions: {
     ecmaVersion: 2016,
@@ -21,6 +17,7 @@ module.exports = {
     'no-use-before-define': 0,
     'quote-props': 1,
     'react/jsx-no-bind': 1,
+    'react/require-default-props': 0,
     'react/prefer-stateless-function': 1,
     'padded-blocks': 0,
     'no-shadow': 1,

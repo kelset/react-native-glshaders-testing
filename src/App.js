@@ -1,9 +1,10 @@
 /* @flow */
 
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { Shaders, Node, GLSL } from 'gl-react-native';
+import { Surface, Shaders, Node, GLSL } from 'gl-react-native';
+
 const shaders = Shaders.create({
   helloBlue: {
     frag: GLSL`
@@ -15,7 +16,12 @@ const shaders = Shaders.create({
     }`
   }
 });
+
 class HelloBlue extends PureComponent {
+  static propTypes = {
+    blue: PropTypes.float
+  };
+
   render() {
     const { blue } = this.props;
     return <Node shader={shaders.helloBlue} uniforms={{ blue }} />;
@@ -31,6 +37,9 @@ export default class App extends PureComponent {
             Test for GL shaders and filters
           </Text>
         </View>
+        <Surface width={300} height={300}>
+          <HelloBlue blue={0.5} />
+        </Surface>
       </View>
     );
   }
