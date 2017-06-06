@@ -3,6 +3,25 @@
 import React, { PureComponent } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { Shaders, Node, GLSL } from 'gl-react-native';
+const shaders = Shaders.create({
+  helloBlue: {
+    frag: GLSL`
+        precision highp float;
+        varying vec2 uv;
+        uniform float blue;
+        void main() {
+        gl_FragColor = vec4(uv.x, uv.y, blue, 1.0);
+    }`
+  }
+});
+class HelloBlue extends PureComponent {
+  render() {
+    const { blue } = this.props;
+    return <Node shader={shaders.helloBlue} uniforms={{ blue }} />;
+  }
+}
+
 export default class App extends PureComponent {
   render() {
     return (
@@ -22,11 +41,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#F5FCFF'
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
-  },
+    margin: 10
+  }
 });
