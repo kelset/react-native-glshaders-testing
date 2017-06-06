@@ -7,12 +7,18 @@
 		"test": "jest"
 	},
 	"dependencies": {
+		"eslint-plugin-react-native": "^2.3.2",
 		"react": "16.0.0-alpha.6",
 		"react-native": "0.44.3"
 	},
 	"devDependencies": {
 		"babel-jest": "20.0.3",
 		"babel-preset-react-native": "1.9.2",
+		"eslint": "^3.19.0",
+		"eslint-config-airbnb": "^15.0.1",
+		"eslint-plugin-import": "^2.3.0",
+		"eslint-plugin-jsx-a11y": "^5.0.3",
+		"eslint-plugin-react": "^7.0.1",
 		"jest": "20.0.4",
 		"react-test-renderer": "16.0.0-alpha.6"
 	},
