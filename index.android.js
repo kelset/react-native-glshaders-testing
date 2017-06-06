@@ -2,4 +2,4 @@ import { AppRegistry } from 'react-native';
 
 import App from './src/App';
 
-AppRegistry.registerComponent('RecipeNumberOne', () => App);
+AppRegistry.registerComponent('GlTesting', () => App);
