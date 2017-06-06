@@ -7,7 +7,6 @@
 		"test": "jest"
 	},
 	"dependencies": {
-		"gl-react": "^3.6.0",
 		"gl-react-native": "^3.6.0",
 		"react": "16.0.0-alpha.6",
 		"react-native": "0.44.3"
