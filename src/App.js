@@ -3,7 +3,8 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { Surface, Shaders, Node, GLSL } from 'gl-react-native';
+import { Surface, Shader, Node } from 'gl-react-native';
+import { Shaders, GLSL } from 'gl-react';
 
 const shaders = Shaders.create({
   helloBlue: {
