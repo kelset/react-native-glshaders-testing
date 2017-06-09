@@ -3,8 +3,8 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { Surface, Shader, Node } from 'gl-react-native';
-import { Shaders, GLSL } from 'gl-react';
+import { Surface } from 'gl-react-native';
+import { Shaders, GLSL, Node } from 'gl-react';
 
 const shaders = Shaders.create({
   helloBlue: {
@@ -13,14 +13,14 @@ const shaders = Shaders.create({
         varying vec2 uv;
         uniform float blue;
         void main() {
-        gl_FragColor = vec4(uv.x, uv.y, blue, 1.0);
-    }`
+          gl_FragColor = vec4(uv.x, uv.y, blue, 1.0);
+      }`
   }
 });
 
 class HelloBlue extends PureComponent {
   static propTypes = {
-    blue: PropTypes.float
+    blue: PropTypes.number.isRequired
   };
 
   render() {
@@ -38,9 +38,11 @@ export default class App extends PureComponent {
             Test for GL shaders and filters
           </Text>
         </View>
-        <Surface width={300} height={300}>
-          <HelloBlue blue={0.5} />
-        </Surface>
+        <View style={{ flex: 0.7, borderColor: 'red', borderWidth: 0.5 }}>
+          <Surface style={{ width: 300, height: 300 }}>
+            <HelloBlue blue={0.5} />
+          </Surface>
+        </View>
       </View>
     );
   }
@@ -49,8 +51,8 @@ export default class App extends PureComponent {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     backgroundColor: '#F5FCFF'
   },
   welcome: {
