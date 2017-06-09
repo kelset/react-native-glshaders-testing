@@ -1,58 +1,31 @@
 /* @flow */
 
-import React, { PureComponent, PropTypes } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { Surface } from 'gl-react-native';
-import { Shaders, GLSL, Node } from 'gl-react';
 
-const shaders = Shaders.create({
-  helloBlue: {
-    frag: GLSL`
-        precision highp float;
-        varying vec2 uv;
-        uniform float blue;
-        void main() {
-          gl_FragColor = vec4(uv.x, uv.y, blue, 1.0);
-      }`
-  }
-});
+import HelloBlue from './HelloBlue';
 
-class HelloBlue extends PureComponent {
-  static propTypes = {
-    blue: PropTypes.number.isRequired
-  };
+const App = () =>
+  (<View style={styles.container}>
+    <View style={{ flex: 0.7, marginTop: 20, alignItems: 'center' }}>
+      <Surface style={{ width: 300, height: 300 }}>
+        <HelloBlue blue={0.5} />
+      </Surface>
+    </View>
+    <View style={{ flex: 0.3 }}>
+      <Text style={styles.welcome}>
+        Test for GL shaders and filters
+      </Text>
+    </View>
+  </View>);
 
-  render() {
-    const { blue } = this.props;
-    return <Node shader={shaders.helloBlue} uniforms={{ blue }} />;
-  }
-}
-
-export default class App extends PureComponent {
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={{ flex: 0.3, marginTop: 20 }}>
-          <Text style={styles.welcome}>
-            Test for GL shaders and filters
-          </Text>
-        </View>
-        <View style={{ flex: 0.7, borderColor: 'red', borderWidth: 0.5 }}>
-          <Surface style={{ width: 300, height: 300 }}>
-            <HelloBlue blue={0.5} />
-          </Surface>
-        </View>
-      </View>
-    );
-  }
-}
+export default App;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
     backgroundColor: '#F5FCFF'
   },
   welcome: {
