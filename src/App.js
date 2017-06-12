@@ -9,6 +9,9 @@ import { Surface } from 'gl-react-native';
 import HelloBlue from './HelloBlue';
 import Amaro from './filters/Amaro';
 import Brannan from './filters/Brannan';
+import Earlybird from './filters/Earlybird';
+import F1977 from './filters/F1977';
+import Hefe from './filters/Hefe';
 
 const App = () => {
   const image = resolveAssetSource(require('./images/yacht-test.jpg'));
@@ -50,23 +53,29 @@ const App = () => {
           <View>
             <View style={styles.imageContainer}>
               <Surface style={styles.singleImage}>
-                <HelloBlue blue={0.5} />
+                <Earlybird>
+                  {image}
+                </Earlybird>
               </Surface>
-              <Text style={styles.baseText}>Demo</Text>
+              <Text style={styles.baseText}>Earlybird</Text>
             </View>
 
             <View style={styles.imageContainer}>
               <Surface style={styles.singleImage}>
-                <HelloBlue blue={0.5} />
+                <F1977>
+                  {image}
+                </F1977>
               </Surface>
-              <Text style={styles.baseText}>Demo</Text>
+              <Text style={styles.baseText}>F1977</Text>
             </View>
 
             <View style={styles.imageContainer}>
               <Surface style={styles.singleImage}>
-                <HelloBlue blue={0.5} />
+                <Hefe>
+                  {image}
+                </Hefe>
               </Surface>
-              <Text style={styles.baseText}>Demo</Text>
+              <Text style={styles.baseText}>Hefe</Text>
             </View>
           </View>
         </View>
