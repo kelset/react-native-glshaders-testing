@@ -11,6 +11,40 @@ import Brannan from './filters/Brannan';
 import Earlybird from './filters/Earlybird';
 import F1977 from './filters/F1977';
 import Hefe from './filters/Hefe';
+import Hudson from './filters/Hudson';
+import Inkwell from './filters/Inkwell';
+import Lokofi from './filters/Lokofi';
+import LordKelvin from './filters/LordKelvin';
+import Nashville from './filters/Nashville';
+import Normal from './filters/Normal';
+
+const filtersArray = [
+  'amaro',
+  'brannan',
+  'earlybird',
+  'f1977',
+  'hefe',
+  'hudson',
+  'inkwell',
+  'lokofi',
+  'lordkelvin',
+  'nashville',
+  'normal'
+];
+
+const filtersComponents = {
+  amaro: Amaro,
+  brannan: Brannan,
+  earlybird: Earlybird,
+  f1977: F1977,
+  hefe: Hefe,
+  hudson: Hudson,
+  inkwell: Inkwell,
+  lokofi: Lokofi,
+  lordkelvin: LordKelvin,
+  nashville: Nashville,
+  normal: Normal
+};
 
 const App = () => {
   const image = resolveAssetSource(require('./images/yacht-test.jpg'));
@@ -28,7 +62,6 @@ const App = () => {
           style={styles.singleImage}
           resizeMode="stretch"
         />
-
       </View>
 
       <View style={{ flex: 0.3 }}>
@@ -40,49 +73,22 @@ const App = () => {
 
         <ScrollView contentContainerStyle={{ justifyContent: 'center' }} horizontal>
           <View style={{ flexDirection: 'row' }}>
-            <View style={styles.previewContainer}>
-              <Surface style={styles.previewImage}>
-                <Amaro>
-                  {image}
-                </Amaro>
-              </Surface>
-              <Text style={styles.baseText}>Amaro</Text>
-            </View>
 
-            <View style={styles.previewContainer}>
-              <Surface style={styles.previewImage}>
-                <Brannan>
-                  {image}
-                </Brannan>
-              </Surface>
-              <Text style={styles.baseText}>Brannan</Text>
-            </View>
-            <View style={styles.previewContainer}>
-              <Surface style={styles.previewImage}>
-                <Earlybird>
-                  {image}
-                </Earlybird>
-              </Surface>
-              <Text style={styles.baseText}>Earlybird</Text>
-            </View>
+            {filtersArray.map((filter) => {
+              const FilteredComponent = filtersComponents[filter];
 
-            <View style={styles.previewContainer}>
-              <Surface style={styles.previewImage}>
-                <F1977>
-                  {image}
-                </F1977>
-              </Surface>
-              <Text style={styles.baseText}>F1977</Text>
-            </View>
+              return (
+                <View style={styles.previewContainer} key={filter}>
+                  <Surface style={styles.previewImage}>
+                    <FilteredComponent>
+                      {image}
+                    </FilteredComponent>
+                  </Surface>
+                  <Text style={styles.baseText}>{filter}</Text>
+                </View>
+              );
+            })}
 
-            <View style={styles.previewContainer}>
-              <Surface style={styles.previewImage}>
-                <Hefe>
-                  {image}
-                </Hefe>
-              </Surface>
-              <Text style={styles.baseText}>Hefe</Text>
-            </View>
           </View>
         </ScrollView>
 
