@@ -6,7 +6,6 @@ import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource'
 
 import { Surface } from 'gl-react-native';
 
-import HelloBlue from './HelloBlue';
 import Amaro from './filters/Amaro';
 import Brannan from './filters/Brannan';
 import Earlybird from './filters/Earlybird';
