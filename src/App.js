@@ -8,6 +8,7 @@ import { Surface } from 'gl-react-native';
 
 import HelloBlue from './HelloBlue';
 import Amaro from './filters/Amaro';
+import Brannan from './filters/Brannan';
 
 const App = () => {
   const image = resolveAssetSource(require('./images/yacht-test.jpg'));
@@ -24,20 +25,25 @@ const App = () => {
                 style={styles.singleImage}
                 resizeMode="stretch"
               />
+              <Text style={styles.baseText}>Base</Text>
             </View>
 
             <View style={styles.imageContainer}>
               <Surface style={styles.singleImage}>
-                <Amaro {...this.props}>
+                <Amaro>
                   {image}
                 </Amaro>
               </Surface>
+              <Text style={styles.baseText}>Amaro</Text>
             </View>
 
             <View style={styles.imageContainer}>
               <Surface style={styles.singleImage}>
-                <HelloBlue blue={0.5} />
+                <Brannan>
+                  {image}
+                </Brannan>
               </Surface>
+              <Text style={styles.baseText}>Brannan</Text>
             </View>
           </View>
 
@@ -46,18 +52,21 @@ const App = () => {
               <Surface style={styles.singleImage}>
                 <HelloBlue blue={0.5} />
               </Surface>
+              <Text style={styles.baseText}>Demo</Text>
             </View>
 
             <View style={styles.imageContainer}>
               <Surface style={styles.singleImage}>
                 <HelloBlue blue={0.5} />
               </Surface>
+              <Text style={styles.baseText}>Demo</Text>
             </View>
 
             <View style={styles.imageContainer}>
               <Surface style={styles.singleImage}>
                 <HelloBlue blue={0.5} />
               </Surface>
+              <Text style={styles.baseText}>Demo</Text>
             </View>
           </View>
         </View>
@@ -90,5 +99,8 @@ const styles = StyleSheet.create({
   singleImage: {
     width: 120,
     height: 120
+  },
+  baseText: {
+    textAlign: 'center'
   }
 });
