@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
 
 import { Surface } from 'gl-react-native';
@@ -17,21 +17,31 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <View style={{ flex: 0.9, marginTop: 20, alignItems: 'center' }}>
+      <View style={{ borderColor: 'lightgray', borderWidth: 1, marginTop: 20 }}>
+        <Text style={styles.welcome}>
+          Preview
+        </Text>
+      </View>
+      <View style={styles.imageContainer}>
+        <Image
+          source={require('./images/yacht-test.jpg')}
+          style={styles.singleImage}
+          resizeMode="stretch"
+        />
 
-        <View style={{ flexDirection: 'row' }}>
-          <View>
-            <View style={styles.imageContainer}>
-              <Image
-                source={require('./images/yacht-test.jpg')}
-                style={styles.singleImage}
-                resizeMode="stretch"
-              />
-              <Text style={styles.baseText}>Base</Text>
-            </View>
+      </View>
 
-            <View style={styles.imageContainer}>
-              <Surface style={styles.singleImage}>
+      <View style={{ flex: 0.3 }}>
+        <View style={{ borderColor: 'lightgray', borderWidth: 1 }}>
+          <Text style={styles.welcome}>
+            Pick a filter
+          </Text>
+        </View>
+
+        <ScrollView contentContainerStyle={{ justifyContent: 'center' }} horizontal>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={styles.previewContainer}>
+              <Surface style={styles.previewImage}>
                 <Amaro>
                   {image}
                 </Amaro>
@@ -39,19 +49,16 @@ const App = () => {
               <Text style={styles.baseText}>Amaro</Text>
             </View>
 
-            <View style={styles.imageContainer}>
-              <Surface style={styles.singleImage}>
+            <View style={styles.previewContainer}>
+              <Surface style={styles.previewImage}>
                 <Brannan>
                   {image}
                 </Brannan>
               </Surface>
               <Text style={styles.baseText}>Brannan</Text>
             </View>
-          </View>
-
-          <View>
-            <View style={styles.imageContainer}>
-              <Surface style={styles.singleImage}>
+            <View style={styles.previewContainer}>
+              <Surface style={styles.previewImage}>
                 <Earlybird>
                   {image}
                 </Earlybird>
@@ -59,8 +66,8 @@ const App = () => {
               <Text style={styles.baseText}>Earlybird</Text>
             </View>
 
-            <View style={styles.imageContainer}>
-              <Surface style={styles.singleImage}>
+            <View style={styles.previewContainer}>
+              <Surface style={styles.previewImage}>
                 <F1977>
                   {image}
                 </F1977>
@@ -68,8 +75,8 @@ const App = () => {
               <Text style={styles.baseText}>F1977</Text>
             </View>
 
-            <View style={styles.imageContainer}>
-              <Surface style={styles.singleImage}>
+            <View style={styles.previewContainer}>
+              <Surface style={styles.previewImage}>
                 <Hefe>
                   {image}
                 </Hefe>
@@ -77,13 +84,8 @@ const App = () => {
               <Text style={styles.baseText}>Hefe</Text>
             </View>
           </View>
-        </View>
+        </ScrollView>
 
-      </View>
-      <View style={{ flex: 0.1 }}>
-        <Text style={styles.welcome}>
-          Test for GL shaders and filters
-        </Text>
       </View>
     </View>
   );
@@ -97,16 +99,28 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF'
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 15,
     textAlign: 'center',
     margin: 10
   },
   imageContainer: {
-    padding: 30
+    flex: 0.7,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  previewContainer: {
+    padding: 10,
+    marginTop: 20,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   singleImage: {
-    width: 120,
-    height: 120
+    width: 320,
+    height: 320
+  },
+  previewImage: {
+    width: 65,
+    height: 65
   },
   baseText: {
     textAlign: 'center'
