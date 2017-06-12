@@ -9,12 +9,52 @@ import HelloBlue from './HelloBlue';
 
 const App = () =>
   (<View style={styles.container}>
-    <View style={{ flex: 0.7, marginTop: 20, alignItems: 'center' }}>
-      <Surface style={{ width: 300, height: 300 }}>
-        <HelloBlue blue={0.5} />
-      </Surface>
+    <View style={{ flex: 0.9, marginTop: 20, alignItems: 'center' }}>
+
+      <View style={{ flexDirection: 'row' }}>
+        <View>
+          <View style={styles.imageContainer}>
+            <Surface style={styles.singleImage}>
+              <HelloBlue blue={0.5} />
+            </Surface>
+          </View>
+
+          <View style={styles.imageContainer}>
+            <Surface style={styles.singleImage}>
+              <HelloBlue blue={0.5} />
+            </Surface>
+          </View>
+
+          <View style={styles.imageContainer}>
+            <Surface style={styles.singleImage}>
+              <HelloBlue blue={0.5} />
+            </Surface>
+          </View>
+        </View>
+
+        <View>
+          <View style={styles.imageContainer}>
+            <Surface style={styles.singleImage}>
+              <HelloBlue blue={0.5} />
+            </Surface>
+          </View>
+
+          <View style={styles.imageContainer}>
+            <Surface style={styles.singleImage}>
+              <HelloBlue blue={0.5} />
+            </Surface>
+          </View>
+
+          <View style={styles.imageContainer}>
+            <Surface style={styles.singleImage}>
+              <HelloBlue blue={0.5} />
+            </Surface>
+          </View>
+        </View>
+      </View>
+
     </View>
-    <View style={{ flex: 0.3 }}>
+    <View style={{ flex: 0.1 }}>
       <Text style={styles.welcome}>
         Test for GL shaders and filters
       </Text>
@@ -32,5 +72,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10
+  },
+  imageContainer: {
+    padding: 30
+  },
+  singleImage: {
+    width: 120,
+    height: 120
   }
 });
