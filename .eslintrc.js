@@ -33,6 +33,7 @@ module.exports = {
     'react/no-multi-comp': 1,
     'no-confusing-arrow': 0,
     'react/jsx-filename-extension': 0,
+    'react/forbid-prop-types': 0,
     'no-console': 0
   }
 };
