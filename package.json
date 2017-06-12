@@ -4,7 +4,10 @@
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
+		"test": "jest",
+		"deep-clean": "rm -rf node_modules && rm -rf android/build && rm -rf ios/build",
+		"build:android": "cd android && ./gradlew assembleRelease",
+		"clean:android": "cd android && ./gradlew clean"
 	},
 	"dependencies": {
 		"gl-react-native": "^3.6.0",
