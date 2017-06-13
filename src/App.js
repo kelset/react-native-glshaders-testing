@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
 
 import { Surface } from 'gl-react-native';
@@ -67,28 +67,6 @@ const filtersComponents = {
   xproII: XproII
 };
 
-const filterPreviewList = image =>
-  (<ScrollView contentContainerStyle={{ justifyContent: 'center' }} horizontal>
-    <View style={{ flexDirection: 'row' }}>
-
-      {filtersArray.map((filter) => {
-        const FilteredComponent = filtersComponents[filter];
-
-        return (
-          <View style={styles.previewContainer} key={filter}>
-            <Surface style={styles.previewImage}>
-              <FilteredComponent>
-                {image}
-              </FilteredComponent>
-            </Surface>
-            <Text style={styles.baseText}>{filter}</Text>
-          </View>
-        );
-      })}
-
-    </View>
-  </ScrollView>);
-
 export default class App extends React.PureComponent {
   constructor() {
     super();
@@ -98,8 +76,79 @@ export default class App extends React.PureComponent {
     };
   }
 
+  showBigImage = (selectedFilter, image) => {
+    if (selectedFilter !== 'none') {
+      const FilteredComponent = filtersComponents[selectedFilter];
+
+      return (
+        <View style={styles.imageContainer}>
+          <Surface style={styles.singleImage}>
+            <FilteredComponent>
+              {image}
+            </FilteredComponent>
+          </Surface>
+          <TouchableOpacity
+            style={{ paddingTop: 20 }}
+            onPress={() => {
+              this.setState({ selectedFilter: 'none' });
+            }}
+          >
+            <Text style={styles.baseText}>Reset</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+
+    return (
+      <View style={styles.imageContainer}>
+        <Image
+          source={require('./images/yacht-test.jpg')}
+          style={styles.singleImage}
+          resizeMode="stretch"
+        />
+        <View style={{ paddingTop: 20 }}>
+          <Text style={styles.baseText}>(no filter)</Text>
+        </View>
+      </View>
+    );
+  };
+
+  changeFilter = (filter) => {
+    this.setState({
+      selectedFilter: filter
+    });
+  };
+
+  filterPreviewList = image =>
+    (<ScrollView contentContainerStyle={{ justifyContent: 'center' }} horizontal>
+      <View style={{ flexDirection: 'row' }}>
+
+        {filtersArray.map((filter) => {
+          const FilteredComponent = filtersComponents[filter];
+
+          return (
+            <TouchableOpacity
+              style={styles.previewContainer}
+              key={filter}
+              onPress={() => {
+                this.changeFilter(filter);
+              }}
+            >
+              <Surface style={styles.previewImage}>
+                <FilteredComponent>
+                  {image}
+                </FilteredComponent>
+              </Surface>
+              <Text style={styles.baseText}>{filter}</Text>
+            </TouchableOpacity>
+          );
+        })}
+
+      </View>
+    </ScrollView>);
+
   render() {
-    const { image } = this.state;
+    const { image, selectedFilter } = this.state;
 
     return (
       <View style={styles.container}>
@@ -108,13 +157,7 @@ export default class App extends React.PureComponent {
             Preview
           </Text>
         </View>
-        <View style={styles.imageContainer}>
-          <Image
-            source={require('./images/yacht-test.jpg')}
-            style={styles.singleImage}
-            resizeMode="stretch"
-          />
-        </View>
+        {this.showBigImage(selectedFilter, image)}
 
         <View style={{ flex: 0.3 }}>
           <View style={{ borderColor: 'lightgray', borderWidth: 1 }}>
@@ -123,7 +166,7 @@ export default class App extends React.PureComponent {
             </Text>
           </View>
 
-          {filterPreviewList(image)}
+          {this.filterPreviewList(image)}
 
         </View>
       </View>
