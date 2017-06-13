@@ -71,7 +71,7 @@ export default class App extends React.PureComponent {
   constructor() {
     super();
     this.state = {
-      image: resolveAssetSource(require('./images/yacht-test.jpg')),
+      image: resolveAssetSource(require('./images/photo1.jpg')),
       selectedFilter: 'none'
     };
   }
@@ -101,11 +101,7 @@ export default class App extends React.PureComponent {
 
     return (
       <View style={styles.imageContainer}>
-        <Image
-          source={require('./images/yacht-test.jpg')}
-          style={styles.singleImage}
-          resizeMode="stretch"
-        />
+        <Image source={image} style={styles.singleImage} resizeMode="stretch" />
         <View style={{ paddingTop: 20 }}>
           <Text style={styles.baseText}>(no filter)</Text>
         </View>
@@ -116,6 +112,12 @@ export default class App extends React.PureComponent {
   changeFilter = (filter) => {
     this.setState({
       selectedFilter: filter
+    });
+  };
+
+  changePicture = (image) => {
+    this.setState({
+      image
     });
   };
 
@@ -152,10 +154,40 @@ export default class App extends React.PureComponent {
 
     return (
       <View style={styles.container}>
-        <View style={{ borderColor: 'lightgray', borderWidth: 1, marginTop: 20 }}>
-          <Text style={styles.welcome}>
-            Preview
-          </Text>
+        <View
+          style={{ borderColor: 'lightgray', borderWidth: 1, marginTop: 20, flexDirection: 'row' }}
+        >
+          <TouchableOpacity
+            onPress={() => {
+              this.changePicture(resolveAssetSource(require('./images/photo1.jpg')));
+            }}
+            style={{ borderColor: 'lightgray', borderLeftWidth: 1, borderRightWidth: 1, flex: 0.3 }}
+          >
+            <Text style={styles.welcome}>
+              Photo #1
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.changePicture(resolveAssetSource(require('./images/photo2.jpg')));
+            }}
+            style={{ borderColor: 'lightgray', borderLeftWidth: 1, borderRightWidth: 1, flex: 0.3 }}
+          >
+            <Text style={styles.welcome}>
+              Photo #2
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.changePicture(resolveAssetSource(require('./images/photo3.jpg')));
+            }}
+            style={{ borderColor: 'lightgray', borderLeftWidth: 1, borderRightWidth: 1, flex: 0.3 }}
+          >
+            <Text style={styles.welcome}>
+              Photo #3
+            </Text>
+          </TouchableOpacity>
+
         </View>
         {this.showBigImage(selectedFilter, image)}
 
