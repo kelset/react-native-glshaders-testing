@@ -17,6 +17,13 @@ import Lokofi from './filters/Lokofi';
 import LordKelvin from './filters/LordKelvin';
 import Nashville from './filters/Nashville';
 import Normal from './filters/Normal';
+import Rise from './filters/Rise';
+import Sierra from './filters/Sierra';
+import Sutro from './filters/Sutro';
+import Toaster from './filters/Toaster';
+import Valencia from './filters/Valencia';
+import Walden from './filters/Walden';
+import XproII from './filters/XproII';
 
 const filtersArray = [
   'amaro',
@@ -29,7 +36,14 @@ const filtersArray = [
   'lokofi',
   'lordkelvin',
   'nashville',
-  'normal'
+  'normal',
+  'rise',
+  'sierra',
+  'sutro',
+  'toaster',
+  'valencia',
+  'walden',
+  'xproII'
 ];
 
 const filtersComponents = {
@@ -43,61 +57,79 @@ const filtersComponents = {
   lokofi: Lokofi,
   lordkelvin: LordKelvin,
   nashville: Nashville,
-  normal: Normal
+  normal: Normal,
+  rise: Rise,
+  sierra: Sierra,
+  sutro: Sutro,
+  toaster: Toaster,
+  valencia: Valencia,
+  walden: Walden,
+  xproII: XproII
 };
 
-const App = () => {
-  const image = resolveAssetSource(require('./images/yacht-test.jpg'));
+const filterPreviewList = image =>
+  (<ScrollView contentContainerStyle={{ justifyContent: 'center' }} horizontal>
+    <View style={{ flexDirection: 'row' }}>
 
-  return (
-    <View style={styles.container}>
-      <View style={{ borderColor: 'lightgray', borderWidth: 1, marginTop: 20 }}>
-        <Text style={styles.welcome}>
-          Preview
-        </Text>
-      </View>
-      <View style={styles.imageContainer}>
-        <Image
-          source={require('./images/yacht-test.jpg')}
-          style={styles.singleImage}
-          resizeMode="stretch"
-        />
-      </View>
+      {filtersArray.map((filter) => {
+        const FilteredComponent = filtersComponents[filter];
 
-      <View style={{ flex: 0.3 }}>
-        <View style={{ borderColor: 'lightgray', borderWidth: 1 }}>
+        return (
+          <View style={styles.previewContainer} key={filter}>
+            <Surface style={styles.previewImage}>
+              <FilteredComponent>
+                {image}
+              </FilteredComponent>
+            </Surface>
+            <Text style={styles.baseText}>{filter}</Text>
+          </View>
+        );
+      })}
+
+    </View>
+  </ScrollView>);
+
+export default class App extends React.PureComponent {
+  constructor() {
+    super();
+    this.state = {
+      image: resolveAssetSource(require('./images/yacht-test.jpg')),
+      selectedFilter: 'none'
+    };
+  }
+
+  render() {
+    const { image } = this.state;
+
+    return (
+      <View style={styles.container}>
+        <View style={{ borderColor: 'lightgray', borderWidth: 1, marginTop: 20 }}>
           <Text style={styles.welcome}>
-            Pick a filter
+            Preview
           </Text>
         </View>
+        <View style={styles.imageContainer}>
+          <Image
+            source={require('./images/yacht-test.jpg')}
+            style={styles.singleImage}
+            resizeMode="stretch"
+          />
+        </View>
 
-        <ScrollView contentContainerStyle={{ justifyContent: 'center' }} horizontal>
-          <View style={{ flexDirection: 'row' }}>
-
-            {filtersArray.map((filter) => {
-              const FilteredComponent = filtersComponents[filter];
-
-              return (
-                <View style={styles.previewContainer} key={filter}>
-                  <Surface style={styles.previewImage}>
-                    <FilteredComponent>
-                      {image}
-                    </FilteredComponent>
-                  </Surface>
-                  <Text style={styles.baseText}>{filter}</Text>
-                </View>
-              );
-            })}
-
+        <View style={{ flex: 0.3 }}>
+          <View style={{ borderColor: 'lightgray', borderWidth: 1 }}>
+            <Text style={styles.welcome}>
+              Pick a filter
+            </Text>
           </View>
-        </ScrollView>
 
+          {filterPreviewList(image)}
+
+        </View>
       </View>
-    </View>
-  );
-};
-
-export default App;
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
