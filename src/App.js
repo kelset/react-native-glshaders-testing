@@ -25,6 +25,8 @@ import Valencia from './filters/Valencia';
 import Walden from './filters/Walden';
 import XproII from './filters/XproII';
 
+import Sticker from './filters/Sticker';
+
 const filtersArray = [
   'amaro',
   'brannan',
@@ -72,9 +74,28 @@ export default class App extends React.PureComponent {
     super();
     this.state = {
       image: resolveAssetSource(require('./images/photo1.jpg')),
-      selectedFilter: 'none'
+      selectedFilter: 'none',
+      sticker: false
     };
   }
+
+  changeFilter = (filter) => {
+    this.setState({
+      selectedFilter: filter
+    });
+  };
+
+  changePicture = (image) => {
+    this.setState({
+      image
+    });
+  };
+
+  changeSticker = () => {
+    this.setState({
+      sticker: !this.state.sticker
+    });
+  };
 
   showBigImage = (selectedFilter, image) => {
     if (selectedFilter !== 'none') {
@@ -109,18 +130,6 @@ export default class App extends React.PureComponent {
     );
   };
 
-  changeFilter = (filter) => {
-    this.setState({
-      selectedFilter: filter
-    });
-  };
-
-  changePicture = (image) => {
-    this.setState({
-      image
-    });
-  };
-
   filterPreviewList = image =>
     (<ScrollView contentContainerStyle={{ justifyContent: 'center' }} horizontal>
       <View style={{ flexDirection: 'row' }}>
@@ -150,7 +159,7 @@ export default class App extends React.PureComponent {
     </ScrollView>);
 
   render() {
-    const { image, selectedFilter } = this.state;
+    const { image, selectedFilter, sticker } = this.state;
 
     return (
       <View style={styles.container}>
@@ -189,8 +198,10 @@ export default class App extends React.PureComponent {
           </TouchableOpacity>
 
         </View>
-        {this.showBigImage(selectedFilter, image)}
 
+        {sticker
+          ? this.showBigImage(selectedFilter, image)
+          : this.showBigImage(selectedFilter, image)}
         <View style={{ flex: 0.3 }}>
           <View style={{ borderColor: 'lightgray', borderWidth: 1 }}>
             <Text style={styles.welcome}>
@@ -199,6 +210,17 @@ export default class App extends React.PureComponent {
           </View>
 
           {this.filterPreviewList(image)}
+
+          <TouchableOpacity
+            style={{ borderColor: 'lightgray', borderWidth: 1 }}
+            onPress={() => {
+              this.changeSticker();
+            }}
+          >
+            <Text style={styles.welcome}>
+              {sticker ? 'Remove sticker' : 'Add sticker'}
+            </Text>
+          </TouchableOpacity>
 
         </View>
       </View>
@@ -223,7 +245,6 @@ const styles = StyleSheet.create({
   },
   previewContainer: {
     padding: 10,
-    marginTop: 20,
     alignItems: 'center',
     justifyContent: 'center'
   },
