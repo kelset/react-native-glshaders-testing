@@ -29,6 +29,7 @@ module.exports = {
     'global-require': 0,
     'import/no-unresolved': 1,
     'no-param-reassign': 0,
+    'no-mixed-operators': 0,
     'consistent-return': 1,
     'react/no-multi-comp': 1,
     'no-confusing-arrow': 0,

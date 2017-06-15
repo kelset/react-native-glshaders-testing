@@ -1,3 +1,5 @@
+// @flow
+
 // original source: https://github.com/jevakallio/react-native-snap-drag/blob/master/index.js
 
 import React, { Component } from 'react';
