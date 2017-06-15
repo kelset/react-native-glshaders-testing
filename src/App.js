@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
 
 import { Surface } from 'gl-react-native';
+import { takeSnapshot } from 'react-native-view-shot';
 
 import StickerPicker from './components/StickerPicker';
 
@@ -73,7 +74,9 @@ export default class App extends React.PureComponent {
     this.state = {
       image: resolveAssetSource(require('./images/photo1.jpg')),
       selectedFilter: 'none',
-      sticker: false
+      sticker: false,
+      modalVisible: false,
+      imagePreview: ''
     };
   }
 
@@ -93,6 +96,27 @@ export default class App extends React.PureComponent {
     this.setState({
       sticker: !this.state.sticker
     });
+  };
+
+  closeModal = () => {
+    this.setState({
+      imagePreview: '',
+      modalVisible: false
+    });
+  };
+
+  saveImage = () => {
+    takeSnapshot(this.snapArea, {
+      result: 'file',
+      format: 'jpeg',
+      quality: 0.8
+    }).then(
+      (uri) => {
+        console.log('Image saved to', uri);
+        this.setState({ imagePreview: uri, modalVisible: true });
+      },
+      error => console.error('Oops, snapshot failed', error)
+    );
   };
 
   showBigImage = (selectedFilter, image) => {
@@ -157,11 +181,36 @@ export default class App extends React.PureComponent {
       </View>
     </ScrollView>);
 
+  renderModal = () =>
+    (<Modal animationType={'slide'} transparent={false} visible={this.state.modalVisible}>
+      <View style={{ marginTop: 22, backgroundColor: '#DDD', flex: 1 }}>
+        <View style={styles.modalContainer}>
+          <Text style={styles.modalText}>This is what you obtained</Text>
+        </View>
+
+        <View style={{ flex: 0.4, justifyContent: 'center', alignItems: 'center' }}>
+          <Image style={{ width: 300, height: 300 }} source={{ uri: this.state.imagePreview }} />
+        </View>
+        <View style={styles.modalContainer}>
+          <TouchableOpacity
+            onPress={() => {
+              this.closeModal();
+            }}
+          >
+            <Text style={styles.modalText}>Hide Modal</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </Modal>);
+
   render() {
     const { image, sticker, selectedFilter } = this.state;
 
     return (
       <View style={styles.container}>
+
+        {this.renderModal()}
+
         <View
           style={{
             borderColor: 'lightgray',
@@ -204,13 +253,18 @@ export default class App extends React.PureComponent {
 
         </View>
 
-        <View style={{ flex: 0.65 }}>
+        <View
+          style={{ flex: 0.65 }}
+          ref={(snapArea) => {
+            this.snapArea = snapArea;
+          }}
+        >
           <StickerPicker isVisible={sticker}>
             {this.showBigImage(selectedFilter, image)}
           </StickerPicker>
         </View>
 
-        <View style={{ flex: 0.3 }}>
+        <View style={{ flex: 0.25 }}>
           <View style={{ borderColor: 'lightgray', borderWidth: 1 }}>
             <Text style={styles.welcome}>
               Pick a filter
@@ -218,9 +272,41 @@ export default class App extends React.PureComponent {
           </View>
 
           {this.filterPreviewList(image)}
+        </View>
+
+        <View
+          style={{
+            borderColor: 'lightgray',
+            borderWidth: 1,
+            marginTop: 20,
+            flexDirection: 'row',
+            flex: 0.05
+          }}
+        >
 
           <TouchableOpacity
-            style={{ borderColor: 'lightgray', borderWidth: 1 }}
+            style={{
+              borderColor: 'lightgray',
+              borderWidth: 1,
+              flex: 0.5,
+              justifyContent: 'center'
+            }}
+            onPress={() => {
+              this.saveImage();
+            }}
+          >
+            <Text style={styles.welcome}>
+              Save image
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{
+              borderColor: 'lightgray',
+              borderWidth: 1,
+              flex: 0.5,
+              justifyContent: 'center'
+            }}
             onPress={() => {
               this.changeSticker();
             }}
@@ -229,7 +315,6 @@ export default class App extends React.PureComponent {
               {sticker ? 'Close' : 'Add sticker'}
             </Text>
           </TouchableOpacity>
-
         </View>
       </View>
     );
@@ -253,6 +338,12 @@ const styles = StyleSheet.create({
     flex: 0.3,
     justifyContent: 'center'
   },
+  modalContainer: {
+    borderColor: 'lightgray',
+    borderWidth: 1,
+    flex: 0.1,
+    justifyContent: 'center'
+  },
   imageContainer: {
     flex: 0.7,
     alignItems: 'center',
@@ -273,5 +364,9 @@ const styles = StyleSheet.create({
   },
   baseText: {
     textAlign: 'center'
+  },
+  modalText: {
+    textAlign: 'center',
+    fontSize: 16
   }
 });
