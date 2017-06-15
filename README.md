@@ -3,6 +3,11 @@
 Pretty much what this repo is about. Latest [React Native](https://github.com/facebook/react-native) + [GLv3 alpha](https://github.com/gre/gl-react/tree/master/packages/gl-react-native) + some [filters](https://github.com/stoffern/gl-react-instagramfilters).
 
 And adding some sticker fanciness in the end, getting some inspiration from [Jani's work](https://github.com/jevakallio/react-native-snap-demo).
+And finally we are able to save it via [`react-native-view-shot`](https://github.com/gre/react-native-view-shot)
+
+**Preview:**
+
+![alt text](./preview.gif "Preview")
 
 ## TIL
 
