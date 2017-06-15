@@ -10,8 +10,9 @@
 		"clean:android": "cd android && ./gradlew clean"
 	},
 	"dependencies": {
-		"gl-react-native": "^3.6.0",
 		"gl-react": "^3.6.0",
+		"gl-react-native": "^3.6.0",
+		"prop-types": "^15.5.10",
 		"react": "16.0.0-alpha.6",
 		"react-native": "0.44.3"
 	},

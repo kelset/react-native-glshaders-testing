@@ -25,8 +25,6 @@ import Valencia from './filters/Valencia';
 import Walden from './filters/Walden';
 import XproII from './filters/XproII';
 
-import Sticker from './filters/Sticker';
-
 const filtersArray = [
   'amaro',
   'brannan',
@@ -108,6 +106,7 @@ export default class App extends React.PureComponent {
               {image}
             </FilteredComponent>
           </Surface>
+          <Text style={styles.baseText}>{selectedFilter}</Text>
           <TouchableOpacity
             style={{ paddingTop: 20 }}
             onPress={() => {
@@ -159,7 +158,7 @@ export default class App extends React.PureComponent {
     </ScrollView>);
 
   render() {
-    const { image, selectedFilter, sticker } = this.state;
+    const { image, sticker, selectedFilter } = this.state;
 
     return (
       <View style={styles.container}>
@@ -199,9 +198,8 @@ export default class App extends React.PureComponent {
 
         </View>
 
-        {sticker
-          ? this.showBigImage(selectedFilter, image)
-          : this.showBigImage(selectedFilter, image)}
+        {this.showBigImage(selectedFilter, image)}
+
         <View style={{ flex: 0.3 }}>
           <View style={{ borderColor: 'lightgray', borderWidth: 1 }}>
             <Text style={styles.welcome}>
