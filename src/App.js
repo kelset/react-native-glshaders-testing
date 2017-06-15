@@ -1,10 +1,10 @@
-/* @flow */
-
 import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
 
 import { Surface } from 'gl-react-native';
+
+import StickerPicker from './components/StickerPicker';
 
 import Amaro from './filters/Amaro';
 import Brannan from './filters/Brannan';
@@ -163,13 +163,19 @@ export default class App extends React.PureComponent {
     return (
       <View style={styles.container}>
         <View
-          style={{ borderColor: 'lightgray', borderWidth: 1, marginTop: 20, flexDirection: 'row' }}
+          style={{
+            borderColor: 'lightgray',
+            borderWidth: 1,
+            marginTop: 20,
+            flexDirection: 'row',
+            flex: 0.05
+          }}
         >
           <TouchableOpacity
             onPress={() => {
               this.changePicture(resolveAssetSource(require('./images/photo1.jpg')));
             }}
-            style={{ borderColor: 'lightgray', borderLeftWidth: 1, borderRightWidth: 1, flex: 0.3 }}
+            style={styles.photoPickerTextContainer}
           >
             <Text style={styles.welcome}>
               Photo #1
@@ -179,7 +185,7 @@ export default class App extends React.PureComponent {
             onPress={() => {
               this.changePicture(resolveAssetSource(require('./images/photo2.jpg')));
             }}
-            style={{ borderColor: 'lightgray', borderLeftWidth: 1, borderRightWidth: 1, flex: 0.3 }}
+            style={styles.photoPickerTextContainer}
           >
             <Text style={styles.welcome}>
               Photo #2
@@ -189,7 +195,7 @@ export default class App extends React.PureComponent {
             onPress={() => {
               this.changePicture(resolveAssetSource(require('./images/photo3.jpg')));
             }}
-            style={{ borderColor: 'lightgray', borderLeftWidth: 1, borderRightWidth: 1, flex: 0.3 }}
+            style={styles.photoPickerTextContainer}
           >
             <Text style={styles.welcome}>
               Photo #3
@@ -198,7 +204,11 @@ export default class App extends React.PureComponent {
 
         </View>
 
-        {this.showBigImage(selectedFilter, image)}
+        <View style={{ flex: 0.65 }}>
+          <StickerPicker isVisible={sticker}>
+            {this.showBigImage(selectedFilter, image)}
+          </StickerPicker>
+        </View>
 
         <View style={{ flex: 0.3 }}>
           <View style={{ borderColor: 'lightgray', borderWidth: 1 }}>
@@ -216,7 +226,7 @@ export default class App extends React.PureComponent {
             }}
           >
             <Text style={styles.welcome}>
-              {sticker ? 'Remove sticker' : 'Add sticker'}
+              {sticker ? 'Close' : 'Add sticker'}
             </Text>
           </TouchableOpacity>
 
@@ -235,6 +245,13 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: 'center',
     margin: 10
+  },
+  photoPickerTextContainer: {
+    borderColor: 'lightgray',
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    flex: 0.3,
+    justifyContent: 'center'
   },
   imageContainer: {
     flex: 0.7,

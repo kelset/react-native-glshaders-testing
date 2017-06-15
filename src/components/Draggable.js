@@ -1,5 +1,3 @@
-// @flow
-
 // original source: https://github.com/jevakallio/react-native-snap-drag/blob/master/index.js
 
 import React, { Component } from 'react';
@@ -11,8 +9,8 @@ const YES = () => true;
 
 export default class Draggable extends Component {
   static propTypes = {
-    dragStarted: PropTypes.func.isRequired,
-    dragEnded: PropTypes.func.isRequired,
+    dragStarted: PropTypes.func,
+    dragEnded: PropTypes.func,
     xLocked: PropTypes.bool,
     yLocked: PropTypes.bool,
     children: PropTypes.object.isRequired,

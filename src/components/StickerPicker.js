@@ -1,5 +1,3 @@
-// @flow
-
 // original source: https://github.com/jevakallio/react-native-snap-emoji
 
 import React, { Component } from 'react';
@@ -72,7 +70,9 @@ export default class StickerPicker extends Component {
           {emojis.map(emoji =>
             (<TouchableOpacity
               key={`emoji-${emoji}`}
-              onPress={this.pick(emoji)}
+              onPress={() => {
+                this.pick(emoji);
+              }}
               style={styles.pickerItem}
             >
               <Text style={styles.pickerItemText}>{emoji}</Text>
