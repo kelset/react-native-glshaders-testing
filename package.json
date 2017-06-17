@@ -36,5 +36,5 @@
   "jest": {
     "preset": "react-native"
   },
-  "main": ""
+  "main": "main.js"
 }

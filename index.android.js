@@ -1,5 +1,5 @@
-import { AppRegistry } from 'react-native';
+import Expo from 'expo';
 
 import App from './src/App';
 
-AppRegistry.registerComponent('GlTesting', () => App);
+Expo.registerRootComponent(App);
