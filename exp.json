@@ -1,0 +1,19 @@
+{
+  "name": "Image Processing demo",
+  "description": "In this small demo app, you'll be able to apply filters and stickers to one of 3 different photos, and \"save it\".",
+  "slug": "image-processing-demo",
+  "sdkVersion": "14.0.0",
+  "version": "1.0.0",
+  "orientation": "portrait",
+  "primaryColor": "#cccccc",
+  "icon": "https://s3.amazonaws.com/exp-icon-assets/ExpoEmptyManifest_192.png",
+  "loading": {
+    "icon": "https://s3.amazonaws.com/exp-icon-assets/ExpoEmptyManifest_192.png",
+    "hideExponentText": false
+  },
+  "packagerOpts": {
+    "assetExts": [
+      "ttf"
+    ]
+  }
+}
