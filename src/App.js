@@ -182,7 +182,7 @@ export default class App extends React.PureComponent {
     </ScrollView>);
 
   renderModal = () =>
-    (<Modal animationType={'slide'} transparent={false} visible={this.state.modalVisible}>
+    (<Modal animationType={'slide'} transparent={false} visible={this.state.modalVisible} onRequestClose={() => {}}>
       <View style={{ marginTop: 22, backgroundColor: '#DDD', flex: 1 }}>
         <View style={styles.modalContainer}>
           <Text style={styles.modalText}>This is what you obtained</Text>
