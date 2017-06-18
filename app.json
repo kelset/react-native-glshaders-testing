@@ -1,4 +1,9 @@
 {
   "name": "GlTesting",
-  "displayName": "GlTesting"
+  "displayName": "GlTesting",
+  "expo": {
+    "slug": "gl-testing",
+    "privacy": "public",
+    "sdkVersion": "17.0.0"
+  }
 }

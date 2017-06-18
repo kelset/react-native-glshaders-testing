@@ -1,37 +1,38 @@
 {
-	"name": "GlTesting",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest",
-		"deep-clean": "rm -rf node_modules && rm -rf android/build && rm -rf ios/build",
-		"build:android": "cd android && ./gradlew assembleRelease",
-		"clean:android": "cd android && ./gradlew clean"
-	},
-	"dependencies": {
-		"gl-react": "^3.6.0",
-		"gl-react-native": "^3.6.0",
-		"prop-types": "^15.5.10",
-		"react": "16.0.0-alpha.6",
-		"react-native": "0.44.3",
-		"react-native-view-shot": "^1.9.1"
-	},
-	"devDependencies": {
-		"babel-eslint": "^7.2.1",
-		"babel-jest": "20.0.3",
-		"babel-preset-react-native": "1.9.2",
-		"eslint": "^3.19.0",
-		"eslint-config-airbnb": "^15.0.1",
-		"eslint-plugin-flowtype": "^2.33.0",
-		"eslint-plugin-import": "^2.3.0",
-		"eslint-plugin-jsx-a11y": "^5.0.3",
-		"eslint-plugin-react": "^7.0.1",
-		"eslint-plugin-react-native": "^2.3.2",
-		"jest": "20.0.4",
-		"react-test-renderer": "16.0.0-alpha.6"
-	},
-	"jest": {
-		"preset": "react-native"
-	}
+  "name": "GlTesting",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "scripts": {
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "node node_modules/jest/bin/jest.js --watch"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "expo": "^17.0.0",
+    "gl-react": "^3.6.0",
+    "gl-react-expo": "^3.6.0",
+    "gl-react-native": "^3.6.0",
+    "prop-types": "^15.5.10",
+    "react": "16.0.0-alpha.6",
+    "react-native": "^0.44.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-flowtype": "^2.33.0",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-react": "^7.0.1",
+    "eslint-plugin-react-native": "^2.3.2",
+    "jest-expo": "~1.0.1",
+    "react-native-scripts": "0.0.31",
+    "react-test-renderer": "16.0.0-alpha.6"
+  }
 }
