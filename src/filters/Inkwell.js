@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import { GLSL, Shaders, Node } from 'gl-react';
 import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';

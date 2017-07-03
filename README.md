@@ -21,3 +21,4 @@ Apparently, to make it work, there are some things to sort out:
 1. based on this [issue](https://github.com/facebook/react-native/issues/3976) here the way to fix it is to install Android's NDK `r10e`, downloadable from [here](https://developer.android.com/ndk/downloads/older_releases.html).
 1. And also adding [this](https://github.com/michel-kraemer/gradle-download-task/issues/58#issuecomment-240358283) is necessary.
 1. Temp [fix](https://github.com/gre/gl-react/pull/120/files) for GL -- can't make it work anymore, I'll stick to iOS simulator atm
+1. Need to use npm@4.6.1 to make it work with Expo properly

@@ -130,7 +130,9 @@ export default class App extends React.PureComponent {
               {image}
             </FilteredComponent>
           </Surface>
-          <Text style={styles.baseText}>{selectedFilter}</Text>
+          <Text style={styles.baseText}>
+            {selectedFilter}
+          </Text>
           <TouchableOpacity
             style={{ paddingTop: 20 }}
             onPress={() => {
@@ -156,7 +158,6 @@ export default class App extends React.PureComponent {
   filterPreviewList = image =>
     (<ScrollView contentContainerStyle={{ justifyContent: 'center' }} horizontal>
       <View style={{ flexDirection: 'row' }}>
-
         {filtersArray.map((filter) => {
           const FilteredComponent = filtersComponents[filter];
 
@@ -173,16 +174,22 @@ export default class App extends React.PureComponent {
                   {image}
                 </FilteredComponent>
               </Surface>
-              <Text style={styles.baseText}>{filter}</Text>
+              <Text style={styles.baseText}>
+                {filter}
+              </Text>
             </TouchableOpacity>
           );
         })}
-
       </View>
     </ScrollView>);
 
   renderModal = () =>
-    (<Modal animationType={'slide'} transparent={false} visible={this.state.modalVisible}>
+    (<Modal
+      animationType={'slide'}
+      transparent={false}
+      visible={this.state.modalVisible}
+      onRequestClose={() => {}}
+    >
       <View style={{ marginTop: 22, backgroundColor: '#DDD', flex: 1 }}>
         <View style={styles.modalContainer}>
           <Text style={styles.modalText}>This is what you obtained</Text>
@@ -208,7 +215,6 @@ export default class App extends React.PureComponent {
 
     return (
       <View style={styles.container}>
-
         {this.renderModal()}
 
         <View
@@ -226,9 +232,7 @@ export default class App extends React.PureComponent {
             }}
             style={styles.photoPickerTextContainer}
           >
-            <Text style={styles.welcome}>
-              Photo #1
-            </Text>
+            <Text style={styles.welcome}>Photo #1</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
@@ -236,9 +240,7 @@ export default class App extends React.PureComponent {
             }}
             style={styles.photoPickerTextContainer}
           >
-            <Text style={styles.welcome}>
-              Photo #2
-            </Text>
+            <Text style={styles.welcome}>Photo #2</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
@@ -246,18 +248,16 @@ export default class App extends React.PureComponent {
             }}
             style={styles.photoPickerTextContainer}
           >
-            <Text style={styles.welcome}>
-              Photo #3
-            </Text>
+            <Text style={styles.welcome}>Photo #3</Text>
           </TouchableOpacity>
-
         </View>
 
         <View
           style={{ flex: 0.65 }}
           ref={(snapArea) => {
             this.snapArea = snapArea;
-          }}>
+          }}
+        >
           <StickerPicker isVisible={sticker}>
             {this.showBigImage(selectedFilter, image)}
           </StickerPicker>
@@ -265,9 +265,7 @@ export default class App extends React.PureComponent {
 
         <View style={{ flex: 0.25 }}>
           <View style={{ borderColor: 'lightgray', borderWidth: 1 }}>
-            <Text style={styles.welcome}>
-              Pick a filter
-            </Text>
+            <Text style={styles.welcome}>Pick a filter</Text>
           </View>
 
           {this.filterPreviewList(image)}
@@ -282,7 +280,6 @@ export default class App extends React.PureComponent {
             flex: 0.05
           }}
         >
-
           <TouchableOpacity
             style={{
               borderColor: 'lightgray',
@@ -294,9 +291,7 @@ export default class App extends React.PureComponent {
               this.saveImage();
             }}
           >
-            <Text style={styles.welcome}>
-              Save image
-            </Text>
+            <Text style={styles.welcome}>Save image</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
