@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
 
-import { Surface } from 'gl-react-native';
-import { takeSnapshot } from 'react-native-view-shot';
+import { Surface } from 'gl-react-expo';
+import { takeSnapshotAsync } from 'expo';
 
 import StickerPicker from './components/StickerPicker';
 
@@ -106,7 +106,7 @@ export default class App extends React.PureComponent {
   };
 
   saveImage = () => {
-    takeSnapshot(this.snapArea, {
+    takeSnapshotAsync(this.snapArea, {
       result: 'file',
       format: 'jpeg',
       quality: 0.8
@@ -257,8 +257,7 @@ export default class App extends React.PureComponent {
           style={{ flex: 0.65 }}
           ref={(snapArea) => {
             this.snapArea = snapArea;
-          }}
-        >
+          }}>
           <StickerPicker isVisible={sticker}>
             {this.showBigImage(selectedFilter, image)}
           </StickerPicker>
