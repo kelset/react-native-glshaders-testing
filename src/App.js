@@ -28,23 +28,23 @@ import XproII from './filters/XproII';
 
 const filtersArray = [
   'amaro',
-  'brannan',
+  // 'brannan',
   'earlybird',
-  'f1977',
-  'hefe',
-  'hudson',
+  // 'f1977',
+  // 'hefe',
+  // 'hudson',
   'inkwell',
-  'lokofi',
-  'lordkelvin',
-  'nashville',
-  'normal',
-  'rise',
+  // 'lokofi',
+  // 'lordkelvin',
+  // 'nashville',
+  // 'normal',
+  // 'rise',
   'sierra',
-  'sutro',
+  // 'sutro',
   'toaster',
-  'valencia',
-  'walden',
-  'xproII'
+  // 'valencia',
+  'walden'
+  // 'xproII'
 ];
 
 const filtersComponents = {
@@ -190,7 +190,7 @@ export default class App extends React.PureComponent {
       visible={this.state.modalVisible}
       onRequestClose={() => {}}
     >
-      <View style={{ marginTop: 22, backgroundColor: '#DDD', flex: 1 }}>
+      <View style={{ backgroundColor: '#DDD', flex: 1 }}>
         <View style={styles.modalContainer}>
           <Text style={styles.modalText}>This is what you obtained</Text>
         </View>
@@ -221,7 +221,7 @@ export default class App extends React.PureComponent {
           style={{
             borderColor: 'lightgray',
             borderWidth: 1,
-            marginTop: 20,
+            marginTop: 24,
             flexDirection: 'row',
             flex: 0.05
           }}
@@ -253,6 +253,7 @@ export default class App extends React.PureComponent {
         </View>
 
         <View
+          collapsable={false}
           style={{ flex: 0.65 }}
           ref={(snapArea) => {
             this.snapArea = snapArea;
@@ -349,8 +350,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   singleImage: {
-    width: 320,
-    height: 320
+    width: 250,
+    height: 250
   },
   previewImage: {
     width: 65,

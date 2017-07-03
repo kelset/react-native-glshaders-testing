@@ -1,17 +1,17 @@
 # Testing GL shaders
 
-Pretty much what this repo is about. Latest [React Native](https://github.com/facebook/react-native) + [GLv3 alpha](https://github.com/gre/gl-react/tree/master/packages/gl-react-native) + some [filters](https://github.com/stoffern/gl-react-instagramfilters).
-
-And adding some sticker fanciness in the end, getting some inspiration from [Jani's work](https://github.com/jevakallio/react-native-snap-demo).
-And finally we are able to save it via [`react-native-view-shot`](https://github.com/gre/react-native-view-shot)
+This project is a [React Native](https://github.com/facebook/react-native) + [GLv3 alpha](https://github.com/gre/gl-react/tree/master/packages/gl-react-native) + [Expo](https://docs.expo.io/versions/v18.0.0/index.html) mashup to create a somewhat Instagram-like MVP with image filtering & stickers.
 
 **Preview:**
 
 ![alt text](./preview.gif "Preview")
 
-## TIL
+## Current issues
 
-1. GL-react-native doesn't work when attached to the debugger
+Hopefully step by step they will get solved.
+
+1. It's really slow
+1. On Android, the Save image works in a fancy way. If I add a sticker it actually shows the image.
 
 ## Troubleshooting
 
@@ -22,3 +22,12 @@ Apparently, to make it work, there are some things to sort out:
 1. And also adding [this](https://github.com/michel-kraemer/gradle-download-task/issues/58#issuecomment-240358283) is necessary.
 1. Temp [fix](https://github.com/gre/gl-react/pull/120/files) for GL -- can't make it work anymore, I'll stick to iOS simulator atm
 1. Need to use npm@4.6.1 to make it work with Expo properly
+1. GL-react-native doesn't work when attached to the debugger
+
+## Acknowledgments
+
+The work of this project is mostly a merge of these awesome projects by some awesome people:
+
+1. instagram like [filters](https://github.com/stoffern/gl-react-instagramfilters)
+1. sticker fanciness, inspired by [Jani's work](https://github.com/jevakallio/react-native-snap-demo)
+1. able to save images, via [`react-native-view-shot`](https://github.com/gre/react-native-view-shot)
